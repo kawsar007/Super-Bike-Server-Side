@@ -36,7 +36,7 @@ async function run() {
         app.post('/purchaes', async (req, res) => {
             const purchaes = req.body;
             const result = await purchaesCollection.insertOne(purchaes);
-            console.log(purchaes, "purchaes");
+            // console.log(purchaes, "purchaes");
             res.json(result);
         })
 
@@ -52,17 +52,17 @@ async function run() {
             const id = req.params.id;
             const query = { _id: ObjectId(id) };
             const result = await purchaesCollection.deleteOne(query)
-            console.log('Deleting user with id', result);
+            // console.log('Deleting user with id', result);
             res.json(result);
         })
 
         // Review Post API
         app.post('/reviews', async (req, res) => {
             const review = req.body;
-            console.log('Hit The Post Api', review);
+            // console.log('Hit The Post Api', review);
 
             const result = await reviewsCollection.insertOne(review);
-            console.log(result);
+            // console.log(result);
             res.json(result)
         })
 
