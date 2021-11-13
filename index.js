@@ -22,6 +22,7 @@ async function run() {
         const database = client.db('superBike');
         const bikeCollection = database.collection('products');
         const purchaesCollection = database.collection('purchaes');
+        const reviewsCollection = database.collection('reviews');
 
         // Get Products API
         app.get('/products', async (req, res) => {
@@ -44,6 +45,23 @@ async function run() {
         const purchaes = await cursor.toArray();
         res.send(purchaes);
     })
+
+    // Review Post API
+    app.post('/reviews', async (req, res) => {
+        const review = req.body;
+        console.log('Hit The Post Api', review);
+        
+        const result = await reviewsCollection.insertOne(review);
+        console.log(result);
+        res.json(result)
+    })
+
+    // Get Reviews
+    app.get('/reviews', async (req, res) => {
+        const cursor = reviewsCollection.find({});
+        const reviews = await cursor.toArray();
+        res.send(reviews)
+    });
 
     } finally {
         // await client.close();
