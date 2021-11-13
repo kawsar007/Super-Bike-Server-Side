@@ -2,6 +2,7 @@ const express = require('express');
 const { MongoClient } = require('mongodb');
 const app = express()
 const cors = require('cors');
+const ObjectId = require('mongodb').ObjectId;
 require('dotenv').config()
 const port = process.env.PORT || 5000;
 
@@ -44,6 +45,15 @@ async function run() {
         const cursor = purchaesCollection.find({});
         const purchaes = await cursor.toArray();
         res.send(purchaes);
+    })
+
+    // DELETE Purchase
+    app.delete('/purchaes/:id', async (req, res) => {
+        const id = req.params.id;
+        const query = { _id: ObjectId(id) };
+        const result = await purchaesCollection.deleteOne(query)
+        console.log('Deleting user with id', result);
+        res.json(result);
     })
 
     // Review Post API
