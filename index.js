@@ -32,46 +32,46 @@ async function run() {
             res.send(products)
         })
 
-    // Purchaes Products
-    app.post('/purchaes', async (req, res) => {
-        const purchaes = req.body;
-        const result = await purchaesCollection.insertOne(purchaes);
-        console.log(purchaes, "purchaes");
-        res.json(result);
-    })
+        // Purchaes Products
+        app.post('/purchaes', async (req, res) => {
+            const purchaes = req.body;
+            const result = await purchaesCollection.insertOne(purchaes);
+            console.log(purchaes, "purchaes");
+            res.json(result);
+        })
 
-    // GET Purchaes
-    app.get('/purchaes', async (req, res) => {
-        const cursor = purchaesCollection.find({});
-        const purchaes = await cursor.toArray();
-        res.send(purchaes);
-    })
+        // GET Purchaes
+        app.get('/purchaes', async (req, res) => {
+            const cursor = purchaesCollection.find({});
+            const purchaes = await cursor.toArray();
+            res.send(purchaes);
+        })
 
-    // DELETE Purchase
-    app.delete('/purchaes/:id', async (req, res) => {
-        const id = req.params.id;
-        const query = { _id: ObjectId(id) };
-        const result = await purchaesCollection.deleteOne(query)
-        console.log('Deleting user with id', result);
-        res.json(result);
-    })
+        // DELETE Purchase
+        app.delete('/purchaes/:id', async (req, res) => {
+            const id = req.params.id;
+            const query = { _id: ObjectId(id) };
+            const result = await purchaesCollection.deleteOne(query)
+            console.log('Deleting user with id', result);
+            res.json(result);
+        })
 
-    // Review Post API
-    app.post('/reviews', async (req, res) => {
-        const review = req.body;
-        console.log('Hit The Post Api', review);
-        
-        const result = await reviewsCollection.insertOne(review);
-        console.log(result);
-        res.json(result)
-    })
+        // Review Post API
+        app.post('/reviews', async (req, res) => {
+            const review = req.body;
+            console.log('Hit The Post Api', review);
 
-    // Get Reviews
-    app.get('/reviews', async (req, res) => {
-        const cursor = reviewsCollection.find({});
-        const reviews = await cursor.toArray();
-        res.send(reviews)
-    });
+            const result = await reviewsCollection.insertOne(review);
+            console.log(result);
+            res.json(result)
+        })
+
+        // Get Reviews
+        app.get('/reviews', async (req, res) => {
+            const cursor = reviewsCollection.find({});
+            const reviews = await cursor.toArray();
+            res.send(reviews)
+        });
 
     } finally {
         // await client.close();
@@ -88,6 +88,3 @@ app.get('/', (req, res) => {
 app.listen(port, () => {
     console.log(`Example app listening at http://localhost:${port}`)
 });
-
-// dbBike
-// rkpEf0sOt8uJ3O2L
